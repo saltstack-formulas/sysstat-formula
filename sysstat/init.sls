@@ -1,4 +1,4 @@
 sysstat:
   pkg:
     - installed
-    - name sysstat
+    - name: sysstat
