@@ -4,6 +4,7 @@ sysstat:
     - name: sysstat
   service.running: 
     - enable: True
-    - watch: /etc/default/sysstat
+    - watch:
+      -file: /etc/default/sysstat
     - require:
       - pkg: sysstat
