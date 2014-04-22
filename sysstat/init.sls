@@ -1,3 +1,4 @@
 sysstat:
-  pkg.installed:
-    -name sysstat
+  pkg:
+    - installed
+    - name sysstat
