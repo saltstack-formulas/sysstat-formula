@@ -13,6 +13,9 @@ Status
 Available states
 ================
 
+.. contents::
+    :local:
+
 
 ``sysstat``
 -----------
@@ -20,7 +23,7 @@ Available states
 Install the package
 
 
-``configure``
+``sysstat.config``
 -------------
 
 Enable it as deamon by enabling in /etc/default/sysstat
