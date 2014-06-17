@@ -1,12 +1,10 @@
+{% from "sysstat/map.jinja" import sysstat with context %}
+
 sysstat:
   pkg:
     - installed
-    - name: sysstat
+    - name: {{ sysstat.pkg }}
   service.running: 
     - enable: True
-{% if grains['os_family'] == 'Debian' %}
-    - watch:
-      - file: /etc/default/sysstat
-{% endif %}
     - require:
       - pkg: sysstat

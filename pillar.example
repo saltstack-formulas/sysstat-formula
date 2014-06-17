@@ -1,0 +1,8 @@
+sysstat:
+  lookup:
+    pkg: sysstat
+
+sysstat_config:
+  enabled: True
+  sa1_options: "-S DISK"
+  sa2_options: ""
