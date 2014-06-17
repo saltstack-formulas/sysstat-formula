@@ -7,7 +7,7 @@ Formula to install sysstat/sar and configure it.
 Status
 ======
 
-* This formula has only been tested on my available boxes which are all Ubuntu 12.04.4 LTS, please send pull requests if you find anything missing or broken.
+* This formula has been tested on Ubuntu 12.04.4 LTS and CentOS 6.5.
 * No support for individual configuration through pillars yet.
 
 Available states
@@ -25,5 +25,8 @@ Install the package
 
 ``sysstat.config``
 -------------
+
+.. note::
+    Debian family OS only
 
 Enable it as deamon by enabling in /etc/default/sysstat
