@@ -8,7 +8,7 @@ Status
 ======
 
 * This formula has been tested on Ubuntu 12.04.4 LTS and CentOS 6.5.
-* No support for individual configuration through pillars yet.
+* Supports configuration through pillar data for Debian-family systems.
 
 Available states
 ================

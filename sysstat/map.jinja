@@ -1,0 +1,9 @@
+{% set sysstat = salt['grains.filter_by']({
+    'Debian': {
+        'pkg': 'sysstat',
+        'config': '/etc/default/sysstat',
+    },
+    'Redhat': {
+        'pkg': 'sysstat',
+    }
+}, merge=salt['pillar.get']('sysstat:lookup')) %}
