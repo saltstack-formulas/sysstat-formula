@@ -14,7 +14,7 @@ sysstat-config:
     - group: root
     - template: jinja
     - defaults:
-        enabled: {{ enabled }}
+        enabled: "{{ enabled }}"
         sa1_options: {{ sa1_opts }}
         sa2_options: {{ sa2_opts }}
     - watch_in:
