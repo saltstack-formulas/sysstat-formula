@@ -1,8 +1,10 @@
+# -*- coding: utf-8 -*-
+# vim: ft=yaml
 sysstat:
   lookup:
-    pkg: sysstat
-
-sysstat_config:
-  enabled: "true"
-  sa1_options: "-S DISK"
-  sa2_options: ""
+    service:
+      enabled: True
+    config:
+      enabled: "true"
+      sa1_options: "-S DISK"
+      sa2_options: ""
