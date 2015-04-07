@@ -64,3 +64,31 @@ off for RedHat setup in ``sysstat/map.jinja`` and on for rest as setup in
 Disclaimer
 ================
 Parts of the formula may or may not work in versions earlier than 2014.7
+
+.. note::
+   Some of the Changes are backwards incompatible, please review the following 
+   diff for clarification of the same:
+
+
+New Pillar Style:
+
+.. code-block:: Saltstack
+    sysstat:
+        lookup:
+            service:
+                enabled: True
+            config:
+                enabled: "true"
+                sa1_options: "-S DISK"
+                sa2_options: ""
+
+Old Pillar Style
+
+.. code-blockk:: Saltstack
+    sysstat:
+        lookup:
+            pkg: sysstat     
+    sysstat_config:
+        enabled: "true"
+        sa1_options: "-S DISK"
+        sa2_options: ""
