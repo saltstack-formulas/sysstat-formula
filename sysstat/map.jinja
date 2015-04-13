@@ -1,9 +1,26 @@
-{% set sysstat = salt['grains.filter_by']({
-    'Debian': {
-        'pkg': 'sysstat',
-        'config': '/etc/default/sysstat',
-    },
-    'RedHat': {
-        'pkg': 'sysstat',
-    }
-}, merge=salt['pillar.get']('sysstat:lookup')) %}
+# -*- coding: utf-8 -*-
+# vim: ft=jinja
+
+{## Start with  defaults from defaults.sls ##}
+{% import_yaml 'sysstat/defaults.yml' as default_settings %}
+
+{## setup variable using grains['os_family'] based logic ##}
+{% set os_family_map = salt['grains.filter_by']({
+        'RedHat': {
+            "service": {
+                "name": "sysstat",
+                "enabled": False
+            }
+        }
+  }, grain="os_family")
+%}
+{## Merge the flavor_map to the default settings ##}
+{% do default_settings.sysstat.update(os_family_map) %}
+
+{## Merge in sysstat:lookup pillar ##}
+{% set sysstat_settings = salt['pillar.get'](
+        'sysstat:lookup',
+        default=default_settings.sysstat,
+        merge=True
+    )
+%}

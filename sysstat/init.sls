@@ -1,12 +1,7 @@
-{% from "sysstat/map.jinja" import sysstat with context %}
+# -*- coding: utf-8 -*-
+# vim: ft=sls
 
-sysstat:
-  pkg:
-    - installed
-    - name: {{ sysstat.pkg }}
-{% if grains['os_family'] != 'RedHat' %}
-  service.running: 
-    - enable: True
-    - require:
-      - pkg: sysstat
-{% endif %}
+include:
+  -  sysstat.package
+  -  sysstat.config
+  -  sysstat.service

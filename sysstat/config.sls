@@ -1,23 +1,23 @@
-{% from "sysstat/map.jinja" import sysstat with context %}
-{% set enabled = salt['pillar.get']('sysstat_config:enabled', 'false') %}
-{% set sa1_opts = salt['pillar.get']('sysstat_config:sa1_options', '-S DISK') %}
-{% set sa2_opts = salt['pillar.get']('sysstat_config:sa2_options', '') %}
-include:
-  - sysstat
+# -*- coding: utf-8 -*-
+# vim: ft=sls
+
+{## import settings from map.jinja ##}
+{% from "sysstat/map.jinja" import sysstat_settings with context %}
+{% set config_settings = sysstat_settings.config %}
 
 sysstat-config:
   file.managed:
-    - name: {{ sysstat.config }}
-    - source: salt://sysstat/sysstat.default
+    - name: {{ config_settings.path }}
+    - source: salt://sysstat/files/sysstat.default
     - mode: 644
     - user: root
     - group: root
     - template: jinja
     - defaults:
-        enabled: "{{ enabled }}"
-        sa1_options: {{ sa1_opts }}
-        sa2_options: {{ sa2_opts }}
-    - watch_in:
-      - service: sysstat
-    - require:
-      - pkg: sysstat
+        enabled: "{{ config_settings.enabled }}"
+        sa1_options: {{ config_settings.sa1_opts }}
+        sa2_options: {{ config_settings.sa2_opts }}
+    {% if systat_settings.service.enabled %}
+    - listen_in:
+      - service: sysstat-service
+    {% endif %}
