@@ -8,7 +8,7 @@
 sysstat-config:
   file.managed:
     - name: {{ config_settings.path }}
-    - source: salt://sysstat/sources/sysstat.default
+    - source: salt://sysstat/files/sysstat.default
     - mode: 644
     - user: root
     - group: root
