@@ -15,8 +15,8 @@ sysstat-config:
     - template: jinja
     - defaults:
         enabled: "{{ config_settings.enabled }}"
-        sa1_options: {{ config_settings.sa1_opts }}
-        sa2_options: {{ config_settings.sa2_opts }}
+        sa1_options: {{ config_settings.sa1_options }}
+        sa2_options: {{ config_settings.sa2_options }}
     {% if sysstat_settings.service.enabled %}
     - listen_in:
       - service: sysstat-service
