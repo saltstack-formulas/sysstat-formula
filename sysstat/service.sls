@@ -4,9 +4,9 @@
 {## import settings from map.jinja ##}
 {% from "sysstat/map.jinja" import sysstat_settings with context %}
 
-{% if systat_settings.service.enabled %}
-systat-service:
+{% if sysstat_settings.service.enabled %}
+sysstat-service:
   service.running:
-    - name: {{ systat_settings.service.name }}
+    - name: {{ sysstat_settings.service.name }}
     - enable: True
 {% endif %}
