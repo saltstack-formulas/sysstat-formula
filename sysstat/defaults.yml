@@ -10,3 +10,5 @@ sysstat:
     enabled: "true"
     sa1_options: "-S DISK"
     sa2_options: ""
+    history: 60
+    compressafter: 10

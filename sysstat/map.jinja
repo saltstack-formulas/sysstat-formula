@@ -7,13 +7,24 @@
 {## setup variable using grains['os_family'] based logic ##}
 {% set sysstat_settings = salt['grains.filter_by']({
         'Debian': default_settings.sysstat,
+        'RedHat': default_settings.sysstat,
+        'Suse': default_settings.sysstat,
+}, merge=salt['grains.filter_by']({
         'RedHat': {
             "service": {
                 "name": "sysstat",
-                "enabled": False
-            }
-        }
+                "enabled": False,
+            },
+        },
+        'Suse': {
+            "service": {
+                "name": "boot.sysstat",
+            },
+            "config": {
+                "path": "/etc/sysstat/sysstat"
+            },
+        },
     }, grain="os_family", default='Debian',
     merge=salt['pillar.get']('sysstat:lookup')
-)
+))
 %}

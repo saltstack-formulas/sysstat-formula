@@ -1,0 +1,9 @@
+# sysstat-8.1.5 configuration file.
+
+# How long to keep log files (in days).
+# If value is greater than 28, then log files are kept in
+# multiple directories, one for each month.
+HISTORY={{ history|default('', 60) }}
+
+# Compress (using gzip or bzip2) sa and sar files older than (in days):
+COMPRESSAFTER={{ compressafter|default('', 10) }}
