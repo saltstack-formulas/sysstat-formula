@@ -1,0 +1,40 @@
+# -*- coding: utf-8 -*-
+# vim: ft=yaml
+---
+sysstat:
+  dir: /usr/local
+  version: '12.1.5'
+  pkg:
+    name: sysstat
+    use_upstream_source: False
+    source:
+      name: /tmp/sysstat
+      uri: http://pagesperso-orange.fr/sebastien.godard
+      source: None
+      source_hash: d3bbc90194326e93fbc7f63cff20894ea20cd05caee1bc6ada3bf602e06970e4  #linux amd64 tarball
+      trim_output: True   {# works in 2018.3.2. onwards #}
+      archive_suffix: tar.gz
+      archive_format: tar
+      enforce_toplevel: False
+      options: '--strip-components=1'
+
+  kernel: ''
+  arch: ''
+  rootgroup: root
+  config_file: /etc/default/sysstat
+  config:
+    path: /etc/default/sysstat
+    enabled: "true"
+    sa1_options: "-S DISK"
+    sa2_options: ""
+    history: 60
+    compressafter: 10
+
+  environ_file: /etc/default/sysstat.sh
+  environ: []
+  service:
+    name: sysstat
+
+  linux:
+    #'Alternatives system' priority: zero disables (default)
+    altpriority: 0

@@ -1,30 +1,45 @@
 # -*- coding: utf-8 -*-
 # vim: ft=jinja
 
-{## Start with  defaults from defaults.sls ##}
-{% import_yaml 'sysstat/defaults.yml' as default_settings %}
+{#- Get the `tplroot` from `tpldir` #}
+{%- set tplroot = tpldir.split('/')[0] %}
+{#- Start imports as #}
+{%- import_yaml tplroot ~ "/defaults.yaml" as default_settings %}
+{%- import_yaml tplroot ~ "/osfamilymap.yaml" as osfamilymap %}
+{%- import_yaml tplroot ~ "/osmap.yaml" as osmap %}
+{%- import_yaml tplroot ~ "/osfingermap.yaml" as osfingermap %}
 
-{## setup variable using grains['os_family'] based logic ##}
-{% set sysstat_settings = salt['grains.filter_by']({
-        'Debian': default_settings.sysstat,
-        'RedHat': default_settings.sysstat,
-        'Suse': default_settings.sysstat,
-}, merge=salt['grains.filter_by']({
-        'RedHat': {
-            "service": {
-                "name": "sysstat",
-                "enabled": False,
-            },
-        },
-        'Suse': {
-            "service": {
-                "name": "boot.sysstat",
-            },
-            "config": {
-                "path": "/etc/sysstat/sysstat"
-            },
-        },
-    }, grain="os_family", default='Debian',
-    merge=salt['pillar.get']('sysstat:lookup')
-))
-%}
+{%- set defaults = salt['grains.filter_by'](default_settings,
+    default='sysstat',
+    merge=salt['grains.filter_by'](osfamilymap, grain='os_family',
+      merge=salt['pillar.get']('sysstat:lookup', default={})
+    )
+) %}
+
+{#- Merge the sysstat pillar #}
+{%- set sysstat = salt['pillar.get']('sysstat', default=defaults, merge=True) %}
+
+{#- source jinja #}
+{%- if sysstat.pkg.use_upstream_source %}
+    {%- set name = 'sysstat-%s'|format(sysstat.version) %}
+    {%- set uri = sysstat.pkg.source.uri + '/' + name %}
+    {%- do sysstat.pkg.source.update({
+           'name':           sysstat.pkg.source.name + '/' + name,
+           'source':         uri + '.' + sysstat.pkg.source.archive_suffix,
+           'archive_format': sysstat.pkg.source.archive_format
+    }) %}
+    {%- do sysstat.update({'base_dir': sysstat.pkg.source.name}) %}
+    {%- do sysstat.environ.append('export PATH=${PATH}:' + sysstat.dir + '/bin') %}
+{%- endif %}
+
+{#- Contactenate arguments #}
+{%- macro concat_args(args) %}
+{%-   set args = args|dictsort %}
+{%-   if args|length > 0 %}
+{%-     for k,v in args -%}
+{%-       if not k or not v %}{% continue %}{% endif -%}
+          --{{ k }}={{ v }}
+{%-       if not loop.last %} {% endif -%}
+{%-     endfor -%}
+{%-   endif -%}
+{%- endmacro %}
