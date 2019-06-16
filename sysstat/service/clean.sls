@@ -5,7 +5,7 @@
 {%- set tplroot = tpldir.split('/')[0] %}
 {%- from tplroot ~ "/map.jinja" import sysstat with context %}
 
-include:
-  - {{ '.source' if sysstat.pkg.use_upstream_source else '.package' }}
-  - .config
-  - .service
+sysstat-service-clean-service-dead:
+  service.dead:
+    - name: {{ sysstat.service.name }}
+    - enable: False
