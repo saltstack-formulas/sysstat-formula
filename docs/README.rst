@@ -102,7 +102,6 @@ dependency on ``sysstat.service.clean`` via include list.
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This state will remove the sysstat package and has a depency on
-``sysstat.config.clean`` via include list.
 
 ``sysstat.source.clean``
 ^^^^^^^^^^^^^^^^^^^^^^^^

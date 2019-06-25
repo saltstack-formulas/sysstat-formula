@@ -47,7 +47,10 @@ coverage.xml
 .hypothesis/
 .kitchen
 .kitchen.local.yml
+<<<<<<< HEAD
 kitchen.local.yml
+=======
+>>>>>>> 873ae0f132f728b86d0f7d910dd383c34f5f1fb8
 
 # Translations
 *.mo
@@ -103,6 +106,7 @@ ENV/
 # mypy
 .mypy_cache/
 
+<<<<<<< HEAD
 # Bundler
 Gemfile.lock
 
@@ -111,3 +115,7 @@ docs/*.md
 
 # Vim
 *.sw?
+=======
+# copied `.md` files used for conversion to `.rst` using `m2r`
+docs/*.md
+>>>>>>> 873ae0f132f728b86d0f7d910dd383c34f5f1fb8
