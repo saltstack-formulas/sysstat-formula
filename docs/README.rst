@@ -13,7 +13,9 @@ sysstat-formula
    :alt: Semantic Release
    :scale: 100%
    :target: https://github.com/semantic-release/semantic-release
-Manage sysstat.
+
+A SaltStack formula that is empty. It has dummy content to help with a quick
+start on a new formula and it serves as a style guide.
 
 .. contents:: **Table of Contents**
 
@@ -23,6 +25,9 @@ General notes
 See the full `SaltStack Formulas installation and usage instructions
 <https://docs.saltstack.com/en/latest/topics/development/conventions/formulas.html>`_.
 
+If you are interested in writing or contributing to formulas, please pay attention to the `Writing Formula Section
+<https://docs.saltstack.com/en/latest/topics/development/conventions/formulas.html#writing-formulas>`_.
+
 If you want to use this formula, please pay attention to the ``FORMULA`` file and/or ``git tag``,
 which contains the currently released version. This formula is versioned according to `Semantic Versioning <http://semver.org/>`_.
 
@@ -31,7 +36,9 @@ See `Formula Versioning Section <https://docs.saltstack.com/en/latest/topics/dev
 Contributing to this repo
 -------------------------
 
-Please see https://github.com/saltstack-formulas/sysstat-formula/blob/master/docs/CONTRIBUTING.rst
+**Commit message formatting is significant!!**
+
+Please see :ref:`How to contribute <CONTRIBUTING>` for more details.
 
 Available states
 ----------------
@@ -53,10 +60,10 @@ starts the associated sysstat service.
 
 This state will install the sysstat package only.
 
-``sysstat.archive``
-^^^^^^^^^^^^^^^^^^^
+``sysstat.source``
+^^^^^^^^^^^^^^^^^^^^
 
-This state will install the sysstat software from archive file only.
+This state will install the sysstat from source only.
 
 ``sysstat.config``
 ^^^^^^^^^^^^^^^^^^^
@@ -97,8 +104,54 @@ dependency on ``sysstat.service.clean`` via include list.
 This state will remove the sysstat package and has a depency on
 ``sysstat.config.clean`` via include list.
 
-``sysstat.archive.clean``
-^^^^^^^^^^^^^^^^^^^^^^^^^
+``sysstat.source.clean``
+^^^^^^^^^^^^^^^^^^^^^^^^
 
-This state will uninstall sysstat software from archive extracted directory.
+This state will remove the sysstat package and has a depency on
+``sysstat.config.clean`` via include list.
+
+Testing
+-------
+
+Linux testing is done with ``kitchen-salt``.
+
+Requirements
+^^^^^^^^^^^^
+
+* Ruby
+* Docker
+
+.. code-block:: bash
+
+   $ gem install bundler
+   $ bundle install
+   $ bin/kitchen test [platform]
+
+Where ``[platform]`` is the platform name defined in ``kitchen.yml``,
+e.g. ``debian-9-2019-2-py3``.
+
+``bin/kitchen converge``
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+Creates the docker instance and runs the ``sysstat`` main state, ready for testing.
+
+``bin/kitchen verify``
+^^^^^^^^^^^^^^^^^^^^^^
+
+Runs the ``inspec`` tests on the actual instance.
+
+``bin/kitchen destroy``
+^^^^^^^^^^^^^^^^^^^^^^^
+
+Removes the docker instance.
+
+``bin/kitchen test``
+^^^^^^^^^^^^^^^^^^^^
+
+Runs all of the stages above in one go: i.e. ``destroy`` + ``converge`` + ``verify`` + ``destroy``.
+
+``bin/kitchen login``
+^^^^^^^^^^^^^^^^^^^^^
+
+Gives you SSH access to the instance for manual testing.
 

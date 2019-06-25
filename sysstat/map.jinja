@@ -9,12 +9,21 @@
 {%- import_yaml tplroot ~ "/osmap.yaml" as osmap %}
 {%- import_yaml tplroot ~ "/osfingermap.yaml" as osfingermap %}
 
-{%- set defaults = salt['grains.filter_by'](default_settings,
-    default='sysstat',
-    merge=salt['grains.filter_by'](osfamilymap, grain='os_family',
-      merge=salt['pillar.get']('sysstat:lookup', default={})
+{#- Retrieve the config dict only once #}
+{%- set _config = salt['config.get'](tplroot, default={}) %}
+
+{%- set defaults = salt['grains.filter_by']( default_settings,
+      default=tplroot,
+      merge=salt['grains.filter_by']( osfamilymap, grain='os_family',
+        merge=salt['grains.filter_by']( osmap, grain='os',
+          merge=salt['grains.filter_by']( osfingermap, grain='osfinger',
+            merge=salt['grains.filter_by']( _config, default='lookup'
+            )
+          )
+        )
+      )
     )
-) %}
+ %}
 
 {#- Merge the sysstat pillar #}
 {%- set sysstat = salt['pillar.get']('sysstat', default=defaults, merge=True) %}
