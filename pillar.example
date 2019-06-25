@@ -3,8 +3,7 @@
 ---
 sysstat:
   pkg:
-    name: sysstat
-    use_upstream_archive: False
+    use_upstream_source: False
     archive:
       uri: https://dl.sysstat.com/oss/release
 
