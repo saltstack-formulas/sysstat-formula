@@ -2,24 +2,23 @@
 # vim: ft=yaml
 ---
 sysstat:
+  version: '12.1.5'
   pkg:
     use_upstream_source: False
     archive:
       uri: https://dl.sysstat.com/oss/release
 
-  pkgrepo:
-    humanname: sysstat_official
-    name: deb https://packages.sysstat.com/oss/deb stable main
-    file: /etc/apt/sources.list.d/sysstat.list
-    key_url: https://packages.sysstat.com/gpg.key
-  config_file: /etc/sysstat/sysstat.ini
-  environ_file: /etc/default.sysstat.sh
-  service:
-    name: sysstat-server
-
-  linux:
-    #'Alternatives system' priority: zero disables (default)
-    altpriority: 1000
+  # Pillar-based config
+  # See also https://sysstat.com/docs/installation/configuration/
+  environ:
+    - 'export PATH=${PATH}:/opt/sysstat-6.2.2.darwin-amd64'
+  config:
+    default:
+      instance_name: ${HOSTNAME}
+    security:
+      admin_user: admin
+    auth.google:
+      client_secret: 0ldS3cretKey
 
   tofs:
     # The files_switch key serves as a selector for alternative
@@ -44,14 +43,7 @@ sysstat:
     #     - 'example_alt.tmpl'
     #     - 'example_alt.tmpl.jinja'
 
-  # Pillar-based config
-  # See also https://sysstat.com/docs/installation/configuration/
-  environ:
-    - 'export PATH=${PATH}:/opt/sysstat-6.2.2.darwin-amd64'
-  config:
-    default:
-      instance_name: ${HOSTNAME}
-    security:
-      admin_user: admin
-    auth.google:
-      client_secret: 0ldS3cretKey
+  linux:
+    #'Alternatives system' priority: zero disables (default)
+    altpriority: 1000
+

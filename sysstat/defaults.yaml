@@ -21,7 +21,7 @@ sysstat:
   kernel: ''
   arch: ''
   rootgroup: root
-  config_file: /etc/default/sysstat
+  config_file: /etc/default/sysstat.ini
   config:
     path: /etc/default/sysstat
     enabled: "true"
