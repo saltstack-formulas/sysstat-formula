@@ -18,9 +18,7 @@ RedHat:
     name: sysstat
     enabled: False
 
-Suse:
-  service:
-    name: 'boot.sysstat'
+Suse: {}
 
 Gentoo: {}
 
