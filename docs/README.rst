@@ -1,7 +1,7 @@
 .. _readme:
 
 sysstat-formula
-================
+===============
 
 |img_travis| |img_sr|
 
@@ -14,8 +14,7 @@ sysstat-formula
    :scale: 100%
    :target: https://github.com/semantic-release/semantic-release
 
-A SaltStack formula that is empty. It has dummy content to help with a quick
-start on a new formula and it serves as a style guide.
+Formula to install sysstat/sar and configure it.
 
 .. contents:: **Table of Contents**
 
@@ -47,7 +46,7 @@ Available states
    :local:
 
 ``sysstat``
-^^^^^^^^^^^^
+^^^^^^^^^^^
 
 *Meta-state (This is a state that includes other states)*.
 
@@ -56,29 +55,29 @@ manages the sysstat configuration file and then
 starts the associated sysstat service.
 
 ``sysstat.package``
-^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^
 
 This state will install the sysstat package only.
 
 ``sysstat.source``
-^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^
 
 This state will install the sysstat from source only.
 
 ``sysstat.config``
-^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^
 
 This state will configure the sysstat service and has a dependency on ``sysstat.install``
 via include list.
 
 ``sysstat.service``
-^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^
 
 This state will start the sysstat service and has a dependency on ``sysstat.config``
 via include list.
 
 ``sysstat.clean``
-^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^
 
 *Meta-state (This is a state that includes other states)*.
 
@@ -88,18 +87,18 @@ removes the configuration file and
 then uninstalls the package.
 
 ``sysstat.service.clean``
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This state will stop the sysstat service and disable it at boot time.
 
 ``sysstat.config.clean``
-^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^
 
 This state will remove the configuration of the sysstat service and has a
 dependency on ``sysstat.service.clean`` via include list.
 
 ``sysstat.package.clean``
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This state will remove the sysstat package and has a depency on
 
