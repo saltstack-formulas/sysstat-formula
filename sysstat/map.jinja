@@ -40,15 +40,3 @@
     {%- do sysstat.update({'base_dir': sysstat.pkg.source.name}) %}
     {%- do sysstat.environ.append('export PATH=${PATH}:' + sysstat.dir + '/bin') %}
 {%- endif %}
-
-{#- Contactenate arguments #}
-{%- macro concat_args(args) %}
-{%-   set args = args|dictsort %}
-{%-   if args|length > 0 %}
-{%-     for k,v in args -%}
-{%-       if not k or not v %}{% continue %}{% endif -%}
-          --{{ k }}={{ v }}
-{%-       if not loop.last %} {% endif -%}
-{%-     endfor -%}
-{%-   endif -%}
-{%- endmacro %}
