@@ -1,10 +1,49 @@
 # -*- coding: utf-8 -*-
 # vim: ft=yaml
+---
 sysstat:
-  lookup:
-    service:
-      enabled: True
-    config:
-      enabled: "true"
-      sa1_options: "-S DISK"
-      sa2_options: ""
+  version: '12.1.5'
+  pkg:
+    use_upstream_source: False
+    archive:
+      uri: https://dl.sysstat.com/oss/release
+
+  # Pillar-based config
+  # See also https://sysstat.com/docs/installation/configuration/
+  environ:
+    - 'export PATH=${PATH}:/opt/sysstat-6.2.2.darwin-amd64'
+  config:
+    default:
+      instance_name: ${HOSTNAME}
+    security:
+      admin_user: admin
+    auth.google:
+      client_secret: 0ldS3cretKey
+
+  tofs:
+    # The files_switch key serves as a selector for alternative
+    # directories under the formula files directory. See TOFS pattern
+    # doc for more info.
+    # Note: Any value not evaluated by `config.get` will be used literally.
+    # This can be used to set custom paths, as many levels deep as required.
+    files_switch:
+      - any/path/can/be/used/here
+      - id
+      - osfinger
+      - os
+      - os_family
+    # All aspects of path/file resolution are customisable using the options below.
+    # This is unnecessary in most cases; there are sensible defaults.
+    # path_prefix: sysstat_alt
+    # dirs:
+    #   files: files_alt
+    #   default: default_alt
+    # source_files:
+    #   sysstat-config-file-file-managed:
+    #     - 'example_alt.tmpl'
+    #     - 'example_alt.tmpl.jinja'
+
+  linux:
+    #'Alternatives system' priority: zero disables (default)
+    altpriority: 1000
+
