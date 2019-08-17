@@ -6,16 +6,18 @@ sysstat:
   version: '12.1.5'
   pkg:
     name: sysstat
-    use_upstream_source: False
+    use_upstream_source: false
     source:
       name: /tmp/sysstat
       uri: http://pagesperso-orange.fr/sebastien.godard
       source: None
-      source_hash: d3bbc90194326e93fbc7f63cff20894ea20cd05caee1bc6ada3bf602e06970e4  #linux amd64 tarball
-      trim_output: True   {# works in 2018.3.2. onwards #}
+      # linux amd64 tarball
+      source_hash: d3bbc90194326e93fbc7f63cff20894ea20cd05caee1bc6ada3bf602e06970e4
+      # works in 2018.3.2. onwards
+      trim_output: true
       archive_suffix: tar.gz
       archive_format: tar
-      enforce_toplevel: False
+      enforce_toplevel: false
       options: '--strip-components=1'
 
   kernel: ''
@@ -36,5 +38,5 @@ sysstat:
     name: sysstat
 
   linux:
-    #'Alternatives system' priority: zero disables (default)
+    # 'Alternatives system' priority: zero disables (default)
     altpriority: 0

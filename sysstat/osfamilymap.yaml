@@ -16,7 +16,7 @@ Debian: {}
 RedHat:
   service:
     name: sysstat
-    enabled: False
+    enabled: false
 
 Suse: {}
 

@@ -4,7 +4,7 @@
 sysstat:
   version: '12.1.5'
   pkg:
-    use_upstream_source: False
+    use_upstream_source: false
     archive:
       uri: https://dl.sysstat.com/oss/release
 
@@ -38,12 +38,10 @@ sysstat:
     # dirs:
     #   files: files_alt
     #   default: default_alt
-    # source_files:
-    #   sysstat-config-file-file-managed:
-    #     - 'example_alt.tmpl'
-    #     - 'example_alt.tmpl.jinja'
+    source_files:
+      sysstat-config-file-file-managed-config_file:
+        - 'alt_sysstat.default.jinja'
 
   linux:
-    #'Alternatives system' priority: zero disables (default)
+    # 'Alternatives system' priority: zero disables (default)
     altpriority: 1000
-
