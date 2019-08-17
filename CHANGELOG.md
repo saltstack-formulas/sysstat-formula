@@ -1,5 +1,12 @@
 # Changelog
 
+# [0.3.0](https://github.com/saltstack-formulas/sysstat-formula/compare/v0.2.0...v0.3.0) (2019-08-17)
+
+
+### Features
+
+* **yamllint:** include for this repo and apply rules throughout ([a8cc767](https://github.com/saltstack-formulas/sysstat-formula/commit/a8cc767))
+
 # [0.2.0](https://github.com/saltstack-formulas/sysstat-formula/compare/v0.1.0...v0.2.0) (2019-07-19)
 
 
