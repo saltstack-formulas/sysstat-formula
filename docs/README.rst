@@ -14,7 +14,7 @@ sysstat-formula
    :scale: 100%
    :target: https://github.com/semantic-release/semantic-release
 
-Formula to install sysstat/sar and configure it.
+Formula to install sysstat/sar and configure it on GNU/Linux.
 
 .. contents:: **Table of Contents**
 
