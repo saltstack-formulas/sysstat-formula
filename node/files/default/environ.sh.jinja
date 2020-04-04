@@ -3,8 +3,4 @@
 # Your changes may be overwritten.
 ########################################################################
 
-{%- if config %}
-    {%- for item in config %}
-{{ item }}
-    {%- endfor %}
-{%- endif %}
+{{ environ|yaml(False) }}

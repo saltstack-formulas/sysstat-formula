@@ -2,4 +2,4 @@
 # vim: ft=sls
 
 include:
-  - .running
+  - .install

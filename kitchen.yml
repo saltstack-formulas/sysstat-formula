@@ -141,7 +141,7 @@ provisioner:
   log_level: debug
   salt_install: none
   require_chef: false
-  formula: sysstat
+  formula: node
   salt_copy_filter:
     - .kitchen
     - .git
@@ -160,14 +160,14 @@ suites:
       state_top:
         base:
           '*':
-            - sysstat
+            - node
       pillars:
         top.sls:
           base:
             '*':
-              - sysstat
+              - node
       pillars_from_files:
-        sysstat.sls: pillar.example
+        node.sls: pillar.example
     verifier:
       inspec_tests:
         - path: test/integration/default

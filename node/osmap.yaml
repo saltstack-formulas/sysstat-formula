@@ -11,21 +11,18 @@
 # osmap: {}
 ---
 # os_family: Debian
-Ubuntu: {}
-Raspbian: {}
+Ubuntu:
+  pkg:
+    setup:
+      cmd: curl -sL https://deb.nodesource.com/setup_13.x | sudo -E bash -
 
-# os_family: RedHat
-Fedora: {}
-CentOS: {}
+Raspbian:
+  pkg:
+    setup:
+      cmd: curl -sL https://deb.nodesource.com/setup_13.x | sudo -E bash -
 
-# os_family: Suse
-openSUSE: {}
+MacOS:
+  kernel: darwin
 
-# os_family: Gentoo
-Funtoo: {}
-
-# os_family: Arch
-Manjaro: {}
-
-# os_family: Solaris
-SmartOS: {}
+Windows:
+  kernel: win

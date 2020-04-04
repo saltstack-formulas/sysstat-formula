@@ -2,10 +2,10 @@
 # vim: ft=yaml
 ---
 name: default
-title: sysstat formula
+title: node formula
 maintainer: SaltStack Formulas
 license: Apache-2.0
-summary: Verify that the sysstat formula is setup and configured correctly
+summary: Verify that the node formula is setup and configured correctly
 supports:
   - platform-name: debian
   - platform-name: ubuntu

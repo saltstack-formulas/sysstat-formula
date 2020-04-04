@@ -1,24 +1,31 @@
 # -*- coding: utf-8 -*-
 # vim: ft=yaml
 ---
-sysstat:
-  version: '12.1.5'
+node:
+  version: 13.12.0              # version for source/binary installs
   pkg:
-    use_upstream_source: false
-    archive:
-      uri: https://dl.sysstat.com/oss/release
+    version: None               # version for os package managers (None=os default)
+    use_upstream_repo: False    # Valid for Debian family only
+    use_upstream_binary: False  # Binary from NodeSource
+    use_upstream_source: False  # Source from Node
+    deps:
+      - vim                     # example for source install
+    suffix: tar.gz
+    binary:
+      uri: https://nodejs.org/dist
+      source_hash: 3e66b14bbeb9ea1ba129fae7c65374844f4ddaf1e48e2bc19b3b2570e158e362
+    source:
+      uri: https://github.com/nodejs/node/archive
+      source_hash: 3e66b14bbeb9ea1ba129fae7c65374844f4ddaf1e48e2bc19b3b2570e158e362
 
   # Pillar-based config
-  # See also https://sysstat.com/docs/installation/configuration/
-  environ:
-    - 'export PATH=${PATH}:/opt/sysstat-6.2.2.darwin-amd64'
+  # See also https://docs.npmjs.com/configuring-npm/npmrc.html
+  config_file: /etc/npmrc
   config:
-    default:
-      instance_name: ${HOSTNAME}
-    security:
-      admin_user: admin
-    auth.google:
-      client_secret: 0ldS3cretKey
+    prefix: ${HOME}/.npm-packages
+  environ_file: /etc/default/node.sh
+  environ:
+    a: b
 
   tofs:
     # The files_switch key serves as a selector for alternative
@@ -34,14 +41,10 @@ sysstat:
       - os_family
     # All aspects of path/file resolution are customisable using the options below.
     # This is unnecessary in most cases; there are sensible defaults.
-    # path_prefix: sysstat_alt
+    # path_prefix: node_alt
     # dirs:
     #   files: files_alt
     #   default: default_alt
     source_files:
-      sysstat-config-file-file-managed-config_file:
-        - 'alt_sysstat.default.jinja'
-
-  linux:
-    # 'Alternatives system' priority: zero disables (default)
-    altpriority: 1000
+      node-config-file-file-managed-config_file:
+        - 'alt_node.default.jinja'

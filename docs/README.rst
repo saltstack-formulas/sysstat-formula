@@ -1,20 +1,22 @@
 .. _readme:
 
-sysstat-formula
+node-formula
 ===============
 
 |img_travis| |img_sr|
 
-.. |img_travis| image:: https://travis-ci.com/saltstack-formulas/sysstat-formula.svg?branch=master
+.. |img_travis| image:: https://travis-ci.com/saltstack-formulas/node-formula.svg?branch=master
    :alt: Travis CI Build Status
    :scale: 100%
-   :target: https://travis-ci.com/saltstack-formulas/sysstat-formula
+   :target: https://travis-ci.com/saltstack-formulas/node-formula
 .. |img_sr| image:: https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg
    :alt: Semantic Release
    :scale: 100%
    :target: https://github.com/semantic-release/semantic-release
 
-Formula to install sysstat/sar and configure it on GNU/Linux.
+Formula to install Node.js on GNU/Linux, MacOS, and BSD.
+
+The default method is package. See pillar.example file for other ideas.
 
 .. contents:: **Table of Contents**
 
@@ -45,68 +47,68 @@ Available states
 .. contents::
    :local:
 
-``sysstat``
+``node``
 ^^^^^^^^^^^
 
 *Meta-state (This is a state that includes other states)*.
 
-This installs the sysstat package,
-manages the sysstat configuration file and then
-starts the associated sysstat service.
+This installs Node package,
+manages Node configuration file and then
+starts the associated node service.
 
-``sysstat.package``
+``node.package``
 ^^^^^^^^^^^^^^^^^^^
 
-This state will install the sysstat package only.
+This state will install Node package only.
 
-``sysstat.source``
+``node.binary``
 ^^^^^^^^^^^^^^^^^^
 
-This state will install the sysstat from source only.
+This state will install Node from binary only.
 
-``sysstat.config``
+``node.source``
 ^^^^^^^^^^^^^^^^^^
 
-This state will configure the sysstat service and has a dependency on ``sysstat.install``
+This state will install Node from source only.
+
+``node.config``
+^^^^^^^^^^^^^^^^^^
+
+This state will configure npmrc and/or environment and has a dependency on ``node.install``
 via include list.
 
-``sysstat.service``
-^^^^^^^^^^^^^^^^^^^
-
-This state will start the sysstat service and has a dependency on ``sysstat.config``
-via include list.
-
-``sysstat.clean``
+``node.clean``
 ^^^^^^^^^^^^^^^^^
 
 *Meta-state (This is a state that includes other states)*.
 
-this state will undo everything performed in the ``sysstat`` meta-state in reverse order, i.e.
-stops the service,
+this state will undo everything performed in the ``node`` meta-state in reverse order, i.e.
 removes the configuration file and
 then uninstalls the package.
 
-``sysstat.service.clean``
-^^^^^^^^^^^^^^^^^^^^^^^^^
-
-This state will stop the sysstat service and disable it at boot time.
-
-``sysstat.config.clean``
+``node.config.clean``
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-This state will remove the configuration of the sysstat service and has a
-dependency on ``sysstat.service.clean`` via include list.
+This state will remove the configuration of Node and has a
+dependency on ``node.package.clean`` via include list.
 
-``sysstat.package.clean``
+``node.package.clean``
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-This state will remove the sysstat package and has a depency on
+This state will remove Node package and has a dependency on
+``node.config.clean`` via include list.
 
-``sysstat.source.clean``
+``node.source.clean``
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-This state will remove the sysstat package and has a depency on
-``sysstat.config.clean`` via include list.
+This state will remove Node package and has a dependency on
+``node.config.clean`` via include list.
+
+``node.binary.clean``
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+This state will remove Node package and has a dependency on
+``node.config.clean`` via include list.
 
 Testing
 -------
@@ -131,7 +133,7 @@ e.g. ``debian-9-2019-2-py3``.
 ``bin/kitchen converge``
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-Creates the docker instance and runs the ``sysstat`` main state, ready for testing.
+Creates the docker instance and runs the ``node`` main state, ready for testing.
 
 ``bin/kitchen verify``
 ^^^^^^^^^^^^^^^^^^^^^^

@@ -1,7 +1,7 @@
-control 'sysstat package' do
+control 'nodejs package' do
   title 'should be installed'
 
-  describe package('sysstat') do
+  describe package('nodejs') do
     it { should be_installed }
   end
 end
