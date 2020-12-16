@@ -2,6 +2,29 @@
 Changelog
 =========
 
+`0.4.1 <https://github.com/saltstack-formulas/sysstat-formula/compare/v0.4.0...v0.4.1>`_ (2020-12-16)
+---------------------------------------------------------------------------------------------------------
+
+Continuous Integration
+^^^^^^^^^^^^^^^^^^^^^^
+
+
+* **gemfile.lock:** add to repo with updated ``Gemfile`` [skip ci] (\ `0bac4d9 <https://github.com/saltstack-formulas/sysstat-formula/commit/0bac4d9f248d4ccdf0843528dea594e98ca45dfd>`_\ )
+* **gitlab-ci:** use GitLab CI as Travis CI replacement (\ `371749e <https://github.com/saltstack-formulas/sysstat-formula/commit/371749edbe66fe2ed3193467d63a99217f01852b>`_\ )
+* **kitchen:** use ``saltimages`` Docker Hub where available [skip ci] (\ `fca90ff <https://github.com/saltstack-formulas/sysstat-formula/commit/fca90fff36c58e98d1586141275b5e0cae2e7707>`_\ )
+* **kitchen+travis:** remove ``master-py2-arch-base-latest`` [skip ci] (\ `e5c83d2 <https://github.com/saltstack-formulas/sysstat-formula/commit/e5c83d2768554905c33ecd4ac2f17227098e1513>`_\ )
+* **pre-commit:** add to formula [skip ci] (\ `7196f19 <https://github.com/saltstack-formulas/sysstat-formula/commit/7196f19eed3a9833e85ce554fe3880c5b69a7869>`_\ )
+* **pre-commit:** enable/disable ``rstcheck`` as relevant [skip ci] (\ `06d84db <https://github.com/saltstack-formulas/sysstat-formula/commit/06d84db06d3745106b889ec3a296f831ece02a9c>`_\ )
+* **pre-commit:** finalise ``rstcheck`` configuration [skip ci] (\ `bf59577 <https://github.com/saltstack-formulas/sysstat-formula/commit/bf59577f3a5c49841e27856a91ec355262a4f52c>`_\ )
+* **travis:** add notifications => zulip [skip ci] (\ `e7ee82d <https://github.com/saltstack-formulas/sysstat-formula/commit/e7ee82da861a0787f10511a2b1034c2a43525e8a>`_\ )
+* **workflows/commitlint:** add to repo [skip ci] (\ `38e980f <https://github.com/saltstack-formulas/sysstat-formula/commit/38e980f4e7e3c121390d129d0b7c426b2a4433a8>`_\ )
+
+Styles
+^^^^^^
+
+
+* **libtofs.jinja:** use Black-inspired Jinja formatting [skip ci] (\ `06139ce <https://github.com/saltstack-formulas/sysstat-formula/commit/06139cef593009d10724401054b860cda49c0d25>`_\ )
+
 `0.4.0 <https://github.com/saltstack-formulas/sysstat-formula/compare/v0.3.0...v0.4.0>`_ (2020-03-28)
 ---------------------------------------------------------------------------------------------------------
 
