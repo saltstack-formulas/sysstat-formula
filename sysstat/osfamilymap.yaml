@@ -20,7 +20,9 @@ RedHat:
 
 Suse: {}
 
-Gentoo: {}
+Gentoo:
+  pkg:
+    name: app-admin/sysstat
 
 Arch: {}
 
